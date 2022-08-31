@@ -1,3 +1,5 @@
+ [![NuGet Badge](https://buildstats.info/nuget/gui.cs.templates)](https://www.nuget.org/packages/gui.cs.templates/)
+
 This is a template for creating Terminal.Gui applications using `dotnet new`.
 
 ## Development
