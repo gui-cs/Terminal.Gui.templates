@@ -1,0 +1,16 @@
+name: Build and package
+
+on: push
+
+jobs:
+  package:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: cd templates/basic && dotnet build
+      - name: Pack
+        run: dotnet pack
+      - name: Publish to Nuget
+        if: contains(github.ref, 'refs/tags/v')
+        run: dotnet nuget push ./bin/Debug/gui.cs.templates.$(fgrep \<PackageVersion\> ./gui.cs.templates.csproj | grep -oEi '[0-9.]+').nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
