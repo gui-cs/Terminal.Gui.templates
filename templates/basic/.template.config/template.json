@@ -1,0 +1,14 @@
+{
+  "author": "Thomas Nind",
+  "classifications": [ "Console", "TUI" ], 
+  "name": "Terminal Gui Basic Template",
+  "identity": "Terminal.Gui.Templates.Basic",         
+  "groupIdentity":"Terminal.Gui.Templates",
+  "shortName": "guics",
+  "tags": {
+    "language": "C#",
+    "type":"project"
+  },
+  "sourceName": "MyGuiCsProject",
+  "preferNameDirectory": true
+}
