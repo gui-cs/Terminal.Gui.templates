@@ -12,7 +12,7 @@ After installing you can use the template to create new projects:
 
 ```
 dotnet new guics -n myproj
-cd myProj
+cd myproj
 dotnet run
 ```
 
@@ -27,7 +27,7 @@ To use the template run:
 
 ```
 dotnet new guics -n myproj
-cd myProj
+cd myproj
 dotnet run
 ```
 
