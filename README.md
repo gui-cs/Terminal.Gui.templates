@@ -16,6 +16,16 @@ cd myproj
 dotnet run
 ```
 
+## Next Steps
+
+The basic template includes `MyView.cs` which was created by [TerminalGuiDesigner](https://github.com/gui-cs/TerminalGuiDesigner).  You can delete edit this file with the visual designer using the code below or delete it and create your own `Window`/`TopLevel` class manually.
+
+```
+dotnet tool install --global TerminalGuiDesigner
+TerminalGuiDesigner ./MyView.cs
+```
+
+
 ## Development
 For development/testing add this template to `dotnet` using:
 
