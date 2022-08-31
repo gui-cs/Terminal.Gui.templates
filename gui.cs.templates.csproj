@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
     <PackageId>gui.cs.templates</PackageId>
     <Title>Terminal.Gui templates</Title>
     <Authors>Thomas Nind</Authors>
@@ -15,6 +15,11 @@
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
+   <PackageReleaseNotes>
+    v1.0.1
+      - Added README.md to package
+      - Changed Terminal.Gui package dependency to be 1.* instead of explicitly 1.7.2
+   </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
