@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <PackageId>gui.cs.templates</PackageId>
     <Title>Terminal.Gui templates</Title>
     <Authors>Thomas Nind</Authors>
