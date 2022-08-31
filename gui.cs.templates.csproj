@@ -7,9 +7,11 @@
     <Title>Terminal.Gui templates</Title>
     <Authors>Thomas Nind</Authors>
     <Description>Templates to use when creating an application for Terminal.Gui.</Description>
-    <PackageTags>dotnet-new;templates;contoso</PackageTags>
+    <PackageTags>dotnet-new;templates;csharp;terminal;c#;gui;template;consol</PackageTags>
     <TargetFramework>net6.0</TargetFramework>
-
+    <PackageProjectUrl>https://github.com/tznind/gui.cs.template</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
@@ -18,6 +20,10 @@
   <ItemGroup>
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
+    <Content Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Content>
   </ItemGroup>
 
 </Project>
