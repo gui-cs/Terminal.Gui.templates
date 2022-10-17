@@ -11,7 +11,7 @@ dotnet new --install Terminal.Gui.templates
 After installing you can use the template to create new projects:
 
 ```
-dotnet new guics -n myproj
+dotnet new tui -n myproj
 cd myproj
 dotnet run
 ```
@@ -30,13 +30,13 @@ TerminalGuiDesigner ./MyView.cs
 For development/testing add this template to `dotnet` using:
 
 ```
- dotnet new --install D:\Repos\gui.cs.template\templates\basic
+ dotnet new --install D:\Repos\Terminal.Gui.templates\templates\basic
 ```
 
 To use the template run:
 
 ```
-dotnet new guics -n myproj
+dotnet new tui -n myproj
 cd myproj
 dotnet run
 ```
@@ -44,5 +44,5 @@ dotnet run
 To remove it run:
 
 ```
-dotnet new --uninstall D:\Repos\gui.cs.template\templates\basic
+dotnet new --uninstall D:\Repos\Terminal.Gui.templates\templates\basic
 ```

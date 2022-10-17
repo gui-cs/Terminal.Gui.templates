@@ -9,7 +9,7 @@
     <Description>Templates to use when creating an application for Terminal.Gui.</Description>
     <PackageTags>dotnet-new;templates;csharp;terminal;c#;gui;template;consol</PackageTags>
     <TargetFramework>net6.0</TargetFramework>
-    <PackageProjectUrl>https://github.com/tznind/gui.cs.template</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/gui-cs/Terminal.Gui.templates</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <IncludeContentInPack>true</IncludeContentInPack>
