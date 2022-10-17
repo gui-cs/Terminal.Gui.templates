@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.2</PackageVersion>
+    <PackageVersion>1.0.3</PackageVersion>
     <PackageId>Terminal.gui.templates</PackageId>
     <Title>Terminal.Gui templates</Title>
     <Authors>Thomas Nind</Authors>
@@ -16,9 +16,11 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
    <PackageReleaseNotes>
+    v1.0.3
+      - Added Title to window showing quit shortcut
     v1.0.2
       - Renamed package Terminal.Gui.templates
-	v1.0.1
+    v1.0.1
       - Added README.md to package
       - Changed Terminal.Gui package dependency to be 1.* instead of explicitly 1.7.2
    </PackageReleaseNotes>
