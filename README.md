@@ -1,17 +1,17 @@
- [![NuGet Badge](https://buildstats.info/nuget/gui.cs.templates)](https://www.nuget.org/packages/gui.cs.templates/)
+ [![NuGet Badge](https://buildstats.info/nuget/Terminal.gui.templates)](https://www.nuget.org/packages/Terminal.gui.templates/)
 
 ## Usage
 This is a template for creating Terminal.Gui applications using `dotnet new`.
 
 To add this template to those available in `dotnet new` you will need to install the NuGet package:
 ```
-dotnet new --install gui.cs.templates
+dotnet new --install Terminal.Gui.templates
 ```
 
 After installing you can use the template to create new projects:
 
 ```
-dotnet new guics -n myproj
+dotnet new tui -n myproj
 cd myproj
 dotnet run
 ```
@@ -30,13 +30,13 @@ TerminalGuiDesigner ./MyView.cs
 For development/testing add this template to `dotnet` using:
 
 ```
- dotnet new --install D:\Repos\gui.cs.template\templates\basic
+ dotnet new --install D:\Repos\Terminal.Gui.templates\templates\basic
 ```
 
 To use the template run:
 
 ```
-dotnet new guics -n myproj
+dotnet new tui -n myproj
 cd myproj
 dotnet run
 ```
@@ -44,5 +44,5 @@ dotnet run
 To remove it run:
 
 ```
-dotnet new --uninstall D:\Repos\gui.cs.template\templates\basic
+dotnet new --uninstall D:\Repos\Terminal.Gui.templates\templates\basic
 ```

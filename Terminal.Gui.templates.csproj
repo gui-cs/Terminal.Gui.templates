@@ -2,21 +2,23 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.1</PackageVersion>
-    <PackageId>gui.cs.templates</PackageId>
+    <PackageVersion>1.0.2</PackageVersion>
+    <PackageId>Terminal.gui.templates</PackageId>
     <Title>Terminal.Gui templates</Title>
     <Authors>Thomas Nind</Authors>
     <Description>Templates to use when creating an application for Terminal.Gui.</Description>
     <PackageTags>dotnet-new;templates;csharp;terminal;c#;gui;template;consol</PackageTags>
     <TargetFramework>net6.0</TargetFramework>
-    <PackageProjectUrl>https://github.com/tznind/gui.cs.template</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/gui-cs/Terminal.Gui.templates</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
    <PackageReleaseNotes>
-    v1.0.1
+    v1.0.2
+      - Renamed package Terminal.Gui.templates
+	v1.0.1
       - Added README.md to package
       - Changed Terminal.Gui package dependency to be 1.* instead of explicitly 1.7.2
    </PackageReleaseNotes>

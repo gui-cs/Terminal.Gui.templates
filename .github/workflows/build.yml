@@ -13,4 +13,4 @@ jobs:
         run: dotnet pack
       - name: Publish to Nuget
         if: contains(github.ref, 'refs/tags/v')
-        run: dotnet nuget push ./bin/Debug/gui.cs.templates.$(fgrep \<PackageVersion\> ./gui.cs.templates.csproj | grep -oEi '[0-9.]+').nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./bin/Debug/Terminal.Gui.templates.$(fgrep \<PackageVersion\> ./Terminal.Gui.templates.csproj | grep -oEi '[0-9.]+').nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
