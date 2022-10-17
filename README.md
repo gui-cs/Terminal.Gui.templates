@@ -5,7 +5,7 @@ This is a template for creating Terminal.Gui applications using `dotnet new`.
 
 To add this template to those available in `dotnet new` you will need to install the NuGet package:
 ```
-dotnet new --install gui.cs.templates
+dotnet new --install Terminal.Gui.templates
 ```
 
 After installing you can use the template to create new projects:
