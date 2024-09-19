@@ -8,6 +8,12 @@ To add this template to those available in `dotnet new` you will need to install
 dotnet new --install Terminal.Gui.templates
 ```
 
+To use the v2 version of Terminal.Gui library you should instead reference the [latest version from nuget.org](https://www.nuget.org/packages/Terminal.gui.templates) e.g.
+
+```
+dotnet new install Terminal.Gui.Templates::2.0.0-v2-develop.2203
+```
+
 After installing you can use the template to create new projects:
 
 ```
