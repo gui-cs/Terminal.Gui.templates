@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.3</PackageVersion>
+    <PackageVersion>2.0.0-v2-develop.2203</PackageVersion>
     <PackageId>Terminal.gui.templates</PackageId>
     <Title>Terminal.Gui templates</Title>
     <Authors>Thomas Nind</Authors>
     <Description>Templates to use when creating an application for Terminal.Gui.</Description>
     <PackageTags>dotnet-new;templates;csharp;terminal;c#;gui;template;consol</PackageTags>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageProjectUrl>https://github.com/gui-cs/Terminal.Gui.templates</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -16,13 +16,15 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
    <PackageReleaseNotes>
-    v1.0.3
-      - Added Title to window showing quit shortcut
-    v1.0.2
-      - Renamed package Terminal.Gui.templates
-    v1.0.1
-      - Added README.md to package
-      - Changed Terminal.Gui package dependency to be 1.* instead of explicitly 1.7.2
+	   2.0.0-v2-develop.2203
+       - Update for version 2 of Terminal.Gui (latest Terminal Gui Designer compatible edition)
+	   v1.0.3
+	   - Added Title to window showing quit shortcut
+	   v1.0.2
+	   - Renamed package Terminal.Gui.templates
+	   v1.0.1
+	   - Added README.md to package
+	   - Changed Terminal.Gui package dependency to be 1.* instead of explicitly 1.7.2
    </PackageReleaseNotes>
   </PropertyGroup>
 
