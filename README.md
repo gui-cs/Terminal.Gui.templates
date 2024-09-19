@@ -31,6 +31,7 @@ dotnet tool install --global TerminalGuiDesigner
 TerminalGuiDesigner ./MyView.cs
 ```
 
+If you are targetting v2 you will need to add `--prerelease`.
 
 ## Development
 For development/testing add this template to `dotnet` using:
