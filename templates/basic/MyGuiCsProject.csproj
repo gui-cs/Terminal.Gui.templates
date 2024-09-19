@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Terminal.Gui" Version="2.0.0-*"/>
-	  <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" />
+	  <PackageReference Include="Terminal.Gui" Version="2.0.0-v2-develop.2203" />
   </ItemGroup>
 
 </Project>
