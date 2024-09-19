@@ -28,25 +28,19 @@ namespace MyGuiCsProject {
             this.Y = 0;
             this.Modal = false;
             this.Text = "";
-            this.Border.BorderStyle = Terminal.Gui.BorderStyle.Single;
-            this.Border.Effect3D = false;
-            this.Border.DrawMarginFrame = true;
-            this.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.Title = "Press Ctrl+Q to quit";
-            this.label1.Width = 4;
+            this.label1.Width = Dim.Auto();
             this.label1.Height = 1;
             this.label1.X = Pos.Center();
             this.label1.Y = Pos.Center();
             this.label1.Data = "label1";
             this.label1.Text = "Hello World";
-            this.label1.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.Add(this.label1);
-            this.button1.Width = 12;
+            this.button1.Width = Dim.Auto();
             this.button1.X = Pos.Center();
             this.button1.Y = Pos.Center() + 1;
             this.button1.Data = "button1";
             this.button1.Text = "Click Me";
-            this.button1.TextAlignment = Terminal.Gui.TextAlignment.Centered;
             this.button1.IsDefault = false;
             this.Add(this.button1);
         }
