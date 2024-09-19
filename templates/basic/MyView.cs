@@ -15,7 +15,7 @@ namespace MyGuiCsProject{
         
         public MyView() {
             InitializeComponent();
-            button1.Accept += (s,e) => MessageBox.Query("Hello", "Hello There!", "Ok");
+            button1.Accept += (s, e) => MessageBox.Query("Hello", "Hello There!", "Ok");
         }
     }
 }
