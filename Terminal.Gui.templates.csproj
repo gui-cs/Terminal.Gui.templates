@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>2.0.0-v2-develop.2203</PackageVersion>
+    <PackageVersion>2.0.0-v2-develop.4519</PackageVersion>
     <PackageId>Terminal.gui.templates</PackageId>
     <Title>Terminal.Gui templates</Title>
     <Authors>Thomas Nind</Authors>
@@ -16,6 +16,8 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
    <PackageReleaseNotes>
+	   2.0.0-v2-develop.4519
+       - Update for version 2 of Terminal.Gui
 	   2.0.0-v2-develop.2203
        - Update for version 2 of Terminal.Gui (latest Terminal Gui Designer compatible edition)
 	   v1.0.3
