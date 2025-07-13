@@ -3,15 +3,43 @@ name: Build and package
 on: push
 
 jobs:
-  package:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        job: [package-template, test-template]
+
     steps:
       - uses: actions/checkout@v3
-      - name: Build
-        run: cd templates/basic && dotnet build
-      - name: Pack
-        run: dotnet pack
-      - name: Publish to Nuget
-        if: contains(github.ref, 'refs/tags/v')
-        run: dotnet nuget push ./bin/Release/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.x'
+
+      - name: Build and Package Template
+        if: matrix.job == 'package-template'
+        run: |
+          cd templates/basic
+          dotnet build
+          dotnet pack --output ../../nupkgs
+
+      - name: Publish to NuGet
+        if: matrix.job == 'package-template' && contains(github.ref, 'refs/tags/v')
+        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+
+      - name: Test Template Install and Build
+        if: matrix.job == 'test-template'
+        run: |
+          # Install the template locally
+          dotnet new --install templates/basic
+
+          # Create a new project from the template
+          mkdir testapp
+          cd testapp
+          dotnet new tui -n myproj
+          cd myproj
+
+          # Build the generated project
+          dotnet build
