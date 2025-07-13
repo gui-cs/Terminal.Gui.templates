@@ -16,7 +16,7 @@ dotnet new --install Terminal.Gui.templates
 Version 2 of [Terminal.Gui](https://github.com/gui-cs/Terminal.Gui) is in alpha.  To create projects using the v2 template you install the [latest version from nuget.org](https://www.nuget.org/packages/Terminal.gui.templates) e.g.
 
 ```
-dotnet new install Terminal.Gui.Templates::2.0.0-v2-develop.2203
+dotnet new install Terminal.Gui.Templates::2.0.0-v2-develop.4519
 ```
 
 ## Creating projects
