@@ -16,10 +16,10 @@ namespace MyGuiCsProject {
         public MyView() {
             InitializeComponent();
 
-            button1.Accept += (s, e) =>
+            button1.Accepting += (s, e) =>
             {
                 e.Handled = true;
-                return MessageBox.Query("Hello", "Hello There!", "Ok");
+                Terminal.Gui.Views.MessageBox.Query("Hello", "Hello There!", "Ok");
             };
         }
     }
