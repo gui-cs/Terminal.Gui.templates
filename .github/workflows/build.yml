@@ -21,13 +21,11 @@ jobs:
       - name: Build and Package Template
         if: matrix.job == 'package-template'
         run: |
-          cd templates/basic
-          dotnet build
-          dotnet pack --output ../../nupkgs
+          dotnet pack
 
       - name: Publish to NuGet
         if: matrix.job == 'package-template' && contains(github.ref, 'refs/tags/v')
-        run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./bin/Release/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
       - name: Test Template Install and Build
         if: matrix.job == 'test-template'
