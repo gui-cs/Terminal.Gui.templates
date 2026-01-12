@@ -1,0 +1,14 @@
+{
+  "author": "Tig",
+  "classifications": [ "Console", "TUI" ],
+  "name": "Terminal Gui Simple Template",
+  "identity": "Terminal.Gui.Templates.Simple",
+  "groupIdentity": "Terminal.Gui.Templates",
+  "shortName": "tui-simple",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Simple",
+  "preferNameDirectory": true
+}
