@@ -12,7 +12,7 @@ dotnet new install Terminal.Gui.Templates
 The above will install the Terminal.Gui v2 templates. If you want to use v1:
 
 ```
-dotnet new install Terminal.gui.templates::1.0.3
+dotnet new install Terminal.Gui.Templates::1.0.3
 ```
 
 ## Creating projects
@@ -20,7 +20,7 @@ dotnet new install Terminal.gui.templates::1.0.3
 After installing you can use the template to create new projects:
 
 ```
-dotnet new tui-simple -n myproj
-cd myproj
+dotnet new tui-simple -n mytuiapp
+cd mytuiapp
 dotnet run
 ```
