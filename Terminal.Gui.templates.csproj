@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>2.0.0-v2-develop.4519</PackageVersion>
+    <PackageVersion>2.0.0</PackageVersion>
     <PackageId>Terminal.gui.templates</PackageId>
     <Title>Terminal.Gui templates</Title>
     <Authors>Thomas Nind</Authors>
-    <Description>Templates to use when creating an application for Terminal.Gui.</Description>
+    <Description>Templates to use when creating an application for Terminal.Gui v2.</Description>
     <PackageTags>dotnet-new;templates;csharp;terminal;c#;gui;template;consol</PackageTags>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <PackageProjectUrl>https://github.com/gui-cs/Terminal.Gui.templates</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -16,6 +16,8 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
    <PackageReleaseNotes>
+     2.0.0
+       - Update for version 2 of Terminal.Gui
 	   2.0.0-v2-develop.4519
        - Update for version 2 of Terminal.Gui
 	   2.0.0-v2-develop.2203
@@ -33,6 +35,8 @@
   <ItemGroup>
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
+    <None Remove="templates\**\bin\**" />
+    <None Remove="templates\**\obj\**" />
     <Content Include="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
