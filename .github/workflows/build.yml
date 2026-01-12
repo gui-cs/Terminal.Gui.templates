@@ -31,7 +31,7 @@ jobs:
         if: matrix.job == 'test-template'
         run: |
           # Install the template locally
-          dotnet new install templates/tui-simple
+          dotnet new install tui-simple
 
           # Create a new project from the template
           mkdir testapp
