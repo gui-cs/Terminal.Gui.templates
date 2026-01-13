@@ -16,14 +16,13 @@ class SimpleWindow : Window
         {
             Title = "Welcome to Terminal.Gui!",
             X = Pos.Center(),
-            Y = 2
         };
 
         var button = new Button()
         {
             Title = "_Click Me to Quit (or press Esc)",
             X = Pos.Center(),
-            Y = Pos.Bottom(label) + 2
+            Y = Pos.Center()
         };
 
         button.Accepting += (_, _) => App!.RequestStop();

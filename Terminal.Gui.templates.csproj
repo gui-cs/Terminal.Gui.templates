@@ -16,12 +16,12 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
    <PackageReleaseNotes>
-     2.0.0
-       - Update for version 2 of Terminal.Gui
+	   2.0.0-v2-develop.4766
+	   - Update for version 2 of Terminal.Gui
 	   2.0.0-v2-develop.4519
-       - Update for version 2 of Terminal.Gui
+	   - Update for version 2 of Terminal.Gui
 	   2.0.0-v2-develop.2203
-       - Update for version 2 of Terminal.Gui (latest Terminal Gui Designer compatible edition)
+	   - Update for version 2 of Terminal.Gui (latest Terminal Gui Designer compatible edition)
 	   v1.0.3
 	   - Added Title to window showing quit shortcut
 	   v1.0.2
