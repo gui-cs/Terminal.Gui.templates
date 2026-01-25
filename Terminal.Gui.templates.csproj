@@ -33,7 +33,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+	  <PackageReference Include="Terminal.Gui" Version="2.0.0-develop.4883" />
+	  <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
     <Compile Remove="**\*" />
     <None Remove="templates\**\bin\**" />
     <None Remove="templates\**\obj\**" />
