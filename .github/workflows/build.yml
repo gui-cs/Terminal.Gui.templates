@@ -18,6 +18,18 @@ jobs:
         with:
           dotnet-version: '10.x'
 
+      - name: Get latest Terminal.Gui pre-release version
+        id: get_version
+        run: |
+          url="https://api.nuget.org/v3-flatcontainer/terminal.gui/index.json"
+          latest_version=$(curl -s $url | jq -r '.versions[]' | grep -E -- '-(preview|develop|rc|alpha|beta|ci)\.' | sort --version-sort | tail -n 1)
+          echo "latest_prerelease=$latest_version" >> $GITHUB_OUTPUT
+
+      - name: Update Terminal.Gui dependency in template
+        run: |
+          sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-simple/tui-simple.csproj
+          sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-designer/tui-designer.csproj
+
       - name: Build and Package Template
         if: matrix.job == 'package-template'
         run: |
