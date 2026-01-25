@@ -33,6 +33,7 @@ jobs:
       - name: Build and Package Template
         if: matrix.job == 'package-template'
         run: |
+          dotnet restore
           dotnet pack
 
       - name: Publish to NuGet
