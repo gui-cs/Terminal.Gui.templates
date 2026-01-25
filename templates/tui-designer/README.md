@@ -7,7 +7,7 @@ A starter template for building Terminal User Interface (TUI) applications with 
 Install the template:
 
 ```bash
-dotnet new install Terminal.Gui.Templates
+dotnet new install Terminal.gui.templates@2.0.0-alpha.*
 ```
 
 Create a new project:

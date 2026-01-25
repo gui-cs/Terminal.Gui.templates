@@ -6,13 +6,13 @@
   To add this template to those available in `dotnet new` install the NuGet package:
 
   ```
-  dotnet new install Terminal.Gui.Templates
+  dotnet new install Terminal.gui.templates@2.0.0-alpha.*
   ```
 
-  The above will install the Terminal.Gui v2 templates. If you want to use v1:
+  The above will install the latest Terminal.Gui v2 alpha templates. For the stable v1 templates:
 
   ```
-  dotnet new install Terminal.Gui.Templates::1.0.3
+  dotnet new install Terminal.gui.templates
   ```
 
   ## Creating projects
