@@ -3,7 +3,7 @@
   "classifications": [ "Console", "TUI" ], 
   "name": "Terminal Gui Basic Designer Template",
   "identity": "Terminal.Gui.Templates.Designer",         
-  "groupIdentity":"Terminal.Gui.Templates",
+  "groupIdentity": "Terminal.Gui.Templates.Designer",
   "shortName": "tui-designer",
   "tags": {
     "language": "C#",
