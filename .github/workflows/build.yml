@@ -29,6 +29,7 @@ jobs:
         run: |
           sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-simple/tui-simple.csproj
           sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-designer/tui-designer.csproj
+          sed -i 's/\(<PackageVersion>\)[^<]*\(<\/PackageVersion>\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' Terminal.Gui.templates.csproj
 
       - name: Build and Package Template
         if: matrix.job == 'package-template'
