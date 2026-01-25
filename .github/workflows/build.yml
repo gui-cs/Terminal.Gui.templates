@@ -34,6 +34,7 @@ jobs:
         if: matrix.job == 'package-template'
         run: |
           dotnet restore
+          dotnet list package
           dotnet pack
 
       - name: Publish to NuGet
