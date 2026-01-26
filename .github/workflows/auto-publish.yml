@@ -60,21 +60,35 @@ jobs:
       - name: Commit changes
         run: |
           git add .
-          git commit -m "Auto-update to Terminal.Gui ${{ steps.get_version.outputs.latest_prerelease }}" || echo "No changes to commit"
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-update to Terminal.Gui ${{ steps.get_version.outputs.latest_prerelease }}"
+            echo "Changes committed"
+          fi
       
       - name: Create and push tag
         run: |
           TAG="v${{ steps.get_version.outputs.latest_prerelease }}"
           
-          # Check if tag already exists
+          # Check if tag already exists locally
           if git rev-parse "$TAG" >/dev/null 2>&1; then
-            echo "Tag $TAG already exists, skipping publish"
+            echo "Tag $TAG already exists locally, checking remote..."
+          fi
+          
+          # Check if tag exists on remote
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
+            echo "Tag $TAG already exists on remote, skipping publish"
             exit 0
           fi
           
           # Create and push tag
           git tag "$TAG"
-          git push origin main
+          echo "Created tag: $TAG"
+          
+          # Push changes and tag
+          git push origin HEAD:main || echo "No commits to push"
           git push origin "$TAG"
           
-          echo "Created and pushed tag: $TAG"
+          echo "Successfully pushed tag: $TAG"
+          echo "This will trigger the build workflow to publish to NuGet"
