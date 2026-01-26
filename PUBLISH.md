@@ -2,14 +2,27 @@
 
 ## How It Works
 
-The GitHub Actions workflow (`.github/workflows/build.yml`) automates the publishing process:
+The publishing process is automated through two GitHub Actions workflows:
 
-1. **On every push**: The workflow fetches the latest `alpha` version of Terminal.Gui from NuGet and updates the package references
-2. **On tagged pushes**: If the push includes a tag starting with `v`, the package is published to NuGet
+### Automatic Publishing (`.github/workflows/auto-publish.yml`)
 
-## Publishing a New Version
+When Terminal.Gui publishes a new v2 release to the `v2_release` branch:
 
-When a new Terminal.Gui alpha is released and you want to publish an updated template:
+1. Terminal.Gui sends a `repository_dispatch` event to this repository
+2. The workflow waits 15 minutes for NuGet to index the new package
+3. It fetches the latest `alpha` or `beta` version of Terminal.Gui from NuGet
+4. Updates the package references in template files
+5. Creates and pushes a git tag (e.g., `v2.0.0-alpha.100`)
+6. The tag push triggers the build workflow to publish to NuGet
+
+### Manual Publishing
+
+You can also manually trigger a template publish:
+
+1. **Using the GitHub Actions UI**: Go to Actions → "Auto-publish on Terminal.Gui release" → Run workflow
+   - You can optionally skip the 15-minute delay for testing
+
+2. **Using the traditional tag method**:
 
 ```bash
 # 1. Ensure you're on the main branch with latest changes
@@ -18,7 +31,7 @@ git pull
 
 # 2. Commit any pending changes (if any)
 git add .
-git commit -m "Update for Terminal.Gui alpha"
+git commit -m "Update for Terminal.Gui release"
 
 # 3. Create and push a tag (triggers NuGet publish)
 git tag v<version>
@@ -26,43 +39,37 @@ git push origin main
 git push origin v<version>
 ```
 
-The tag name (e.g., `v2.0.0-alpha.100`) is just a trigger - the actual package version will be set automatically to match the latest Terminal.Gui alpha version.
+The tag name (e.g., `v2.0.0-alpha.100`) is just a trigger - the actual package version will be set automatically to match the latest Terminal.Gui alpha or beta version.
 
-## Example
+### Build Workflow (`.github/workflows/build.yml`)
 
-If the latest Terminal.Gui alpha is `2.0.0-alpha.100`:
-
-```bash
-git tag v2.0.0-alpha.100
-git push origin main
-git push origin v2.0.0-alpha.100
-```
-
-This will publish `Terminal.gui.templates` version `2.0.0-alpha.100` to NuGet.
+1. **On every push**: The workflow fetches the latest `alpha` or `beta` version of Terminal.Gui from NuGet and updates the package references
+2. **On tagged pushes**: If the push includes a tag starting with `v`, the package is published to NuGet
 
 ## Changing the Pre-release Channel
 
-To track a different pre-release channel (e.g., `develop`, `rc`, `beta`), edit the grep pattern in `.github/workflows/build.yml`:
+The workflows currently track both `alpha` and `beta` releases. To track different pre-release channels, edit the grep pattern in both workflows:
 
 ```yaml
-# Current: alpha only
-grep -E -- '-alpha\.'
+# Current: alpha and beta
+grep -E -- '-(alpha|beta)\.'
 
 # Example: develop only
 grep -E -- '-develop\.'
 
 # Example: multiple channels (first match wins by build number)
-grep -E -- '-(alpha|rc)\.'
+grep -E -- '-(alpha|rc|beta)\.'
 ```
 
 ## Requirements
 
 - The `NUGET_KEY` secret must be configured in the repository settings
 - Tags must start with `v` to trigger the publish step
+- For automatic publishing, Terminal.Gui must send a `repository_dispatch` event with type `terminal-gui-v2-released` when publishing to the `v2_release` branch
 
 ## Verifying the Publish
 
-After pushing a tag:
+After a tag is created (automatically or manually):
 
 1. Check the [Actions tab](../../actions) for workflow status
 2. Verify the package on [NuGet](https://www.nuget.org/packages/Terminal.gui.templates/)
