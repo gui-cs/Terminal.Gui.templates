@@ -86,8 +86,15 @@ jobs:
           git tag "$TAG"
           echo "Created tag: $TAG"
           
-          # Push changes and tag
-          git push origin HEAD:main || echo "No commits to push"
+          # Push commits if there are any
+          if ! git diff --quiet HEAD origin/main 2>/dev/null; then
+            echo "Pushing commits to main..."
+            git push origin HEAD:main
+          else
+            echo "No commits to push to main"
+          fi
+          
+          # Push tag
           git push origin "$TAG"
           
           echo "Successfully pushed tag: $TAG"
