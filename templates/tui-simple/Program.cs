@@ -4,21 +4,24 @@ using Terminal.Gui.ViewBase;
 using Terminal.Gui.Views;
 
 ConfigurationManager.Enable(ConfigLocations.All);
-Application.Create().Init().Run<SimpleWindow>();
+Application
+    .Create()
+    .Run<SimpleWindow>()
+    .Dispose();
 
-class SimpleWindow : Window
+internal class SimpleWindow : Window
 {
     public SimpleWindow()
     {
         Title = "Hello Terminal.Gui";
 
-        var label = new View()
+        View label = new ()
         {
             Title = "Welcome to Terminal.Gui!",
-            X = Pos.Center(),
+            X = Pos.Center()
         };
 
-        var button = new Button()
+        Button button = new ()
         {
             Title = "_Click Me to Quit (or press Esc)",
             X = Pos.Center(),

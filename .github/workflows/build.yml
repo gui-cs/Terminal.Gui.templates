@@ -27,6 +27,7 @@ jobs:
 
       - name: Update Terminal.Gui dependency in template
         run: |
+          sed -i 's/\(<PackageVersion>\)[^<]*\(<\/PackageVersion>\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' Terminal.Gui.templates.csproj
           sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-simple/tui-simple.csproj
           sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-designer/tui-designer.csproj
           sed -i 's/\(<PackageVersion>\)[^<]*\(<\/PackageVersion>\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' Terminal.Gui.templates.csproj
