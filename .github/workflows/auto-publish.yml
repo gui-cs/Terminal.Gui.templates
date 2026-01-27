@@ -1,0 +1,103 @@
+name: Auto-publish on Terminal.Gui release
+
+on:
+  repository_dispatch:
+    types: [terminal-gui-v2-released]
+  workflow_dispatch:
+    inputs:
+      skip_delay:
+        description: 'Skip the 15-minute delay (for testing)'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  auto-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to push commits and tags
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.x'
+      
+      - name: Wait for NuGet indexing
+        if: ${{ !inputs.skip_delay }}
+        run: |
+          echo "Waiting 15 minutes for NuGet to index the new package..."
+          sleep 900
+      
+      - name: Get latest Terminal.Gui pre-release version
+        id: get_version
+        run: |
+          url="https://api.nuget.org/v3-flatcontainer/terminal.gui/index.json"
+          # Support both alpha and beta releases
+          latest_version=$(curl -s $url | jq -r '.versions[]' | grep -E -- '-(alpha|beta)\.' | awk -F'.' '{print $NF, $0}' | sort -n | tail -n 1 | cut -d' ' -f2-)
+          
+          if [ -z "$latest_version" ]; then
+            echo "Error: No alpha or beta version found"
+            exit 1
+          fi
+          
+          echo "Found latest version: $latest_version"
+          echo "latest_prerelease=$latest_version" >> $GITHUB_OUTPUT
+      
+      - name: Update Terminal.Gui dependency in template
+        run: |
+          sed -i 's/\(<PackageVersion>\)[^<]*\(<\/PackageVersion>\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' Terminal.Gui.templates.csproj
+          sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-simple/tui-simple.csproj
+          sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-designer/tui-designer.csproj
+      
+      - name: Commit changes
+        run: |
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-update to Terminal.Gui ${{ steps.get_version.outputs.latest_prerelease }}"
+            echo "Changes committed"
+          fi
+      
+      - name: Create and push tag
+        run: |
+          TAG="v${{ steps.get_version.outputs.latest_prerelease }}"
+          
+          # Check if tag already exists locally
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists locally, checking remote..."
+          fi
+          
+          # Check if tag exists on remote
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
+            echo "Tag $TAG already exists on remote, skipping publish"
+            exit 0
+          fi
+          
+          # Create and push tag
+          git tag "$TAG"
+          echo "Created tag: $TAG"
+          
+          # Push commits if there are any
+          if ! git diff --quiet HEAD origin/main 2>/dev/null; then
+            echo "Pushing commits to main..."
+            git push origin HEAD:main
+          else
+            echo "No commits to push to main"
+          fi
+          
+          # Push tag
+          git push origin "$TAG"
+          
+          echo "Successfully pushed tag: $TAG"
+          echo "This will trigger the build workflow to publish to NuGet"

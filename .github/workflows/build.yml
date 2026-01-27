@@ -22,7 +22,8 @@ jobs:
         id: get_version
         run: |
           url="https://api.nuget.org/v3-flatcontainer/terminal.gui/index.json"
-          latest_version=$(curl -s $url | jq -r '.versions[]' | grep -E -- '-alpha\.' | awk -F'.' '{print $NF, $0}' | sort -n | tail -n 1 | cut -d' ' -f2-)
+          # Support both alpha and beta releases
+          latest_version=$(curl -s $url | jq -r '.versions[]' | grep -E -- '-(alpha|beta)\.' | awk -F'.' '{print $NF, $0}' | sort -n | tail -n 1 | cut -d' ' -f2-)
           echo "latest_prerelease=$latest_version" >> $GITHUB_OUTPUT
 
       - name: Update Terminal.Gui dependency in template
