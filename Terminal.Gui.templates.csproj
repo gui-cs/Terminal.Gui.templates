@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageType>Template</PackageType>
-		<PackageVersion>2.0.0-alpha.4252</PackageVersion>
+		<PackageVersion>2.0.0-alpha.4277</PackageVersion>
 		<PackageId>Terminal.gui.templates</PackageId>
 		<Title>Terminal.Gui templates</Title>
 		<Authors>Thomas Nind</Authors>
