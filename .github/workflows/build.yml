@@ -68,7 +68,9 @@ jobs:
             dotnet new install "./templates/$t"
             dotnet new "$t" -n SmokeApp -o "/tmp/$t-test"
             # Verify the agent guidance is emitted (the whole point of these templates).
-            test -f "/tmp/$t-test/AGENTS.md" || { echo "::error::$t did not emit AGENTS.md"; exit 1; }
+            for f in AGENTS.md CLAUDE.md .cursorrules .windsurfrules .aider.md; do
+              test -f "/tmp/$t-test/$f" || { echo "::error::$t did not emit $f"; exit 1; }
+            done
             dotnet build "/tmp/$t-test"
             echo "::endgroup::"
           done
