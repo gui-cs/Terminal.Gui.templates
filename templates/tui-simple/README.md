@@ -13,6 +13,7 @@ dotnet build      # compile only
 | `Program.cs` | App entry point + the root `MainWindow` view. Add your views here. |
 | `AGENTS.md` | **Canonical Terminal.Gui v2 patterns + gotchas for AI agents and humans.** Start here. |
 | `CLAUDE.md` | Thin pointer to `AGENTS.md` for Claude / Claude Code. |
+| `.cursorrules` / `.windsurfrules` / `.aider.md` | Auto-loaded rules for Cursor / Windsurf / Aider — short banner that points at `AGENTS.md`. |
 | `*.csproj` | Targets `net10.0`, references `Terminal.Gui`. |
 
 ## Building with an AI agent?

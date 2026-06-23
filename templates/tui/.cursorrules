@@ -1,0 +1,20 @@
+# Terminal.Gui v2 — rules for AI assistants
+
+⛔ **Terminal.Gui v2 is a COMPLETE REWRITE.** Your pre-2025 training data and almost every
+Terminal.Gui example on the web are **v1** and **will not compile**. Before writing or editing
+any UI code, read **`AGENTS.md`** in this project — it is the source of truth (canonical
+patterns, the full v1→v2 corrections table, `Pos`/`Dim` layout, and the common gotchas).
+
+Non-negotiables (see AGENTS.md for the rest):
+- Lifecycle is **instance-based**: `Application.Create ().Run<MyWindow> ().Dispose ()` — NOT the
+  static `Application.Init/Run/Shutdown`, and there is no `Application.Top`.
+- Root views are **`Runnable`** or **`Window`**, never `Toplevel`.
+- Namespaces are split: `using Terminal.Gui.App;` / `.Views;` / `.ViewBase;` / `.Input;` … —
+  the bare `using Terminal.Gui;` is gone.
+- **No `Clicked` event** — use `Accepting` (pre/cancelable) or `Accepted` (post). Use object
+  initializers (`new Button { Text = "OK" }`), not positional constructors.
+- **Layout is declarative** — `Pos.Center ()`, `Dim.Fill ()`; don't hardcode coordinates.
+- Dialogs: the **last button added is the default**; type-specific views expose `.Value`
+  (`IValue<T>`), not guessed names like `.Date`/`.Color`.
+
+📖 Full reference and gotchas: **./AGENTS.md**
