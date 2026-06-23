@@ -1,6 +1,6 @@
 # My Terminal.Gui App
 
-A minimal Terminal User Interface (TUI) app built with [Terminal.Gui](https://github.com/gui-cs/Terminal.Gui) **v2**.
+A minimal Terminal User Interface (TUI) app built with [Terminal.Gui](https://github.com/tui-cs/Terminal.Gui) **v2**.
 
 ```bash
 dotnet run        # launch (Esc or the Quit button exits)
@@ -22,6 +22,6 @@ minimal app, the v1→v2 corrections table, `Pos`/`Dim` layout, the common pitfa
 to Terminal.Gui's CI-validated docs.
 
 ## Learn more
-- Getting started: https://gui-cs.github.io/Terminal.Gui/
-- Repository & samples: https://github.com/gui-cs/Terminal.Gui
-- v1→v2 primer: https://github.com/gui-cs/Terminal.Gui/blob/develop/ai-v2-primer.md
+- Getting started: https://tui-cs.github.io/Terminal.Gui/
+- Repository & samples: https://github.com/tui-cs/Terminal.Gui
+- v1→v2 primer: https://github.com/tui-cs/Terminal.Gui/blob/develop/ai-v2-primer.md

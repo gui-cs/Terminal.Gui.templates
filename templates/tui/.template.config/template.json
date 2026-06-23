@@ -1,6 +1,6 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "gui-cs",
+  "author": "tui-cs",
   "classifications": [ "Console", "TUI", "Terminal.Gui" ],
   "name": "Terminal.Gui App",
   "description": "A complete, AI-agent-ready Terminal.Gui v2 app (net10.0): menu bar, status bar, and interactive content, with embedded AGENTS.md guidance. Optionally scaffolds a headless xUnit test project.",

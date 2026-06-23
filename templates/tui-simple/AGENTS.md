@@ -75,11 +75,11 @@ internal sealed class MainWindow : Window   // bordered root; use `Runnable` for
 6. **Vocabulary:** SubView / SuperView — never "child"/"parent"/"container".
 
 ## Canonical sources (compiled by Terminal.Gui CI — safe to trust)
-- v1→v2 primer: https://github.com/gui-cs/Terminal.Gui/blob/develop/ai-v2-primer.md
-- Build-an-app guide: https://github.com/gui-cs/Terminal.Gui/blob/develop/.claude/tasks/build-app.md
-- Worked recipes (menus, dialogs, forms): https://github.com/gui-cs/Terminal.Gui/blob/develop/.claude/cookbook/common-patterns.md
-- API namespaces: https://github.com/gui-cs/Terminal.Gui/tree/develop/docfx/apispec
-- Docs site: https://gui-cs.github.io/Terminal.Gui/
+- v1→v2 primer: https://github.com/tui-cs/Terminal.Gui/blob/develop/ai-v2-primer.md
+- Build-an-app guide: https://github.com/tui-cs/Terminal.Gui/blob/develop/.claude/tasks/build-app.md
+- Worked recipes (menus, dialogs, forms): https://github.com/tui-cs/Terminal.Gui/blob/develop/.claude/cookbook/common-patterns.md
+- API namespaces: https://github.com/tui-cs/Terminal.Gui/tree/develop/docfx/apispec
+- Docs site: https://tui-cs.github.io/Terminal.Gui/
 
 > Note: the contributor *code-style* rules in Terminal.Gui (spaces-before-parens, Allman braces,
 > etc.) apply to the **library**, not to your app. Build your app however your project prefers.
