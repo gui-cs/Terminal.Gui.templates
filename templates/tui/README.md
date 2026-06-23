@@ -7,6 +7,9 @@ dotnet run        # launch (menu File>Quit or the status bar exits)
 dotnet build      # compile only
 ```
 
+Generate with `dotnet new tui --WithTests` to also scaffold a `Tests/` project with **headless**
+example tests (`dotnet test Tests`) — a fast red-green loop you can run without a terminal.
+
 ## Project layout
 | File | Purpose |
 |---|---|

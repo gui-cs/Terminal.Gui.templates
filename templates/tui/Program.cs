@@ -23,7 +23,10 @@ Application
 
 // `Runnable` is a full-screen, borderless root (use `Window` if you want a bordered box).
 // A typical app puts a MenuBar at the top, a StatusBar at the bottom, and content between.
-internal sealed class MainWindow : Runnable
+//
+// `public` so the optional test project can construct it (scaffold it with `--WithTests`).
+// Terminal.Gui views can be built and exercised headlessly — no terminal needed for logic tests.
+public sealed class MainWindow : Runnable
 {
     private int _count;
     private readonly Label _countLabel;
