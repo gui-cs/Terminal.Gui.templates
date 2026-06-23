@@ -1,40 +1,34 @@
-  [![NuGet Badge](https://buildstats.info/nuget/Terminal.gui.templates)](https://www.nuget.org/packages/Terminal.gui.templates/)
+[![NuGet](https://img.shields.io/nuget/v/Terminal.Gui.Templates)](https://www.nuget.org/packages/Terminal.Gui.Templates/)
 
-  # Usage
-  This is a template for creating Terminal.Gui v2 applications using `dotnet new`.
+# Terminal.Gui Templates
 
-  To add this template to those available in `dotnet new` install the NuGet package:
+`dotnet new` templates for building [Terminal.Gui](https://github.com/gui-cs/Terminal.Gui) **v2** apps — designed so an **AI coding agent** can scaffold and extend a TUI app correctly. Every generated project ships an **`AGENTS.md`** with the canonical v2 patterns (Terminal.Gui v2 is a complete rewrite, so most online/training-data examples are v1 and won't compile).
 
-  ```
-  dotnet new install Terminal.gui.templates@2.0.0-alpha.*
-  ```
+## Install
 
-  The above will install the latest Terminal.Gui v2 alpha templates. For the stable v1 templates:
+```bash
+dotnet new install Terminal.Gui.Templates
+```
 
-  ```
-  dotnet new install Terminal.gui.templates
-  ```
+This installs the latest templates targeting current stable Terminal.Gui (net10.0).
 
-  ## Creating projects
+## Create a project
 
-  After installing you can use the templates to create new projects:
+### `tui-simple`
 
-  ### tui-simple
+A minimal, agent-ready Terminal.Gui v2 app: a `Window` with a label and a quit button, an embedded `AGENTS.md`/`CLAUDE.md`, and a fully commented `Program.cs`.
 
-  A minimal starter template with a simple window, welcome label, and quit button:
+```bash
+dotnet new tui-simple -n MyApp
+cd MyApp
+dotnet run            # Esc or the Quit button exits
+```
 
-  ```
-  dotnet new tui-simple -n mytuiapp
-  cd mytuiapp
-  dotnet run
-  ```
+Open `MyApp/AGENTS.md` first — it has the canonical minimal app, the v1→v2 corrections table, `Pos`/`Dim` layout, common gotchas, and links to Terminal.Gui's CI-validated docs.
 
-  ### tui-designer
+> **Note:** the previous `tui-designer` template is temporarily not shipped while it's regenerated against current Terminal.Gui — see [#24](https://github.com/gui-cs/Terminal.Gui.templates/issues/24).
 
-  A template optimized for use with [Terminal.Gui Designer](https://github.com/gui-cs/TerminalGuiDesigner):
-
-  ```
-  dotnet new tui-designer -n mytuiapp
-  cd mytuiapp
-  dotnet run
-  ```
+## Links
+- Terminal.Gui: https://github.com/gui-cs/Terminal.Gui
+- Getting started: https://gui-cs.github.io/Terminal.Gui/
+- Relaunch plan: [#22](https://github.com/gui-cs/Terminal.Gui.templates/issues/22)

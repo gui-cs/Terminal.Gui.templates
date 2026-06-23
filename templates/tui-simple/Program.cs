@@ -1,35 +1,62 @@
-﻿using Terminal.Gui.App;
-using Terminal.Gui.Configuration;
-using Terminal.Gui.ViewBase;
-using Terminal.Gui.Views;
+// -----------------------------------------------------------------------------
+//  A minimal Terminal.Gui v2 app.  Run it:  dotnet run   (Esc or the button quits)
+//
+//  🤖 AI assistants / agents: READ ./AGENTS.md FIRST.
+//     Terminal.Gui v2 is a COMPLETE REWRITE. Pre-2025 training data and most web
+//     examples are v1 and will not compile. The canonical v2 patterns are in AGENTS.md.
+// -----------------------------------------------------------------------------
 
-ConfigurationManager.Enable(ConfigLocations.All);
+// v2 splits the old monolithic `using Terminal.Gui;` into focused namespaces:
+using Terminal.Gui.App;           // Application, IApplication, MessageBox
+using Terminal.Gui.Configuration; // ConfigurationManager
+using Terminal.Gui.ViewBase;      // View, Pos, Dim
+using Terminal.Gui.Views;         // Window, Label, Button
+
+// Enable the configuration/theme system before creating the app (standard first line).
+ConfigurationManager.Enable (ConfigLocations.All);
+
+// The v2 lifecycle is INSTANCE-BASED and disposable — NOT the static v1
+// Application.Init() / Application.Run() / Application.Shutdown():
+//
+//     Create()  ->  Run<TWindow>()  (auto-Init)  ->  Dispose()  (replaces Shutdown)
+//
 Application
-    .Create()
-    .Run<SimpleWindow>()
-    .Dispose();
+    .Create ()
+    .Run<MainWindow> ()
+    .Dispose ();
 
-internal class SimpleWindow : Window
+// Your app's root view. `Window` is a bordered top-level view; subclass `Runnable`
+// instead if you want a borderless root. Build the UI by Add()-ing child views.
+internal sealed class MainWindow : Window
 {
-    public SimpleWindow()
+    public MainWindow ()
     {
-        Title = "Hello Terminal.Gui";
+        Title = "My App  (Esc to quit)";
 
-        View label = new ()
+        // Layout is DECLARATIVE — position/size with Pos/Dim, don't hardcode coordinates:
+        //   Pos.Center(), Pos.Right(view), Pos.AnchorEnd();  Dim.Fill(), Dim.Auto(), Dim.Percent(50).
+        Label welcome = new ()
         {
-            Title = "Welcome to Terminal.Gui!",
-            X = Pos.Center()
+            Text = "Welcome to Terminal.Gui v2!",
+            X = Pos.Center (),
+            Y = 1
         };
 
-        Button button = new ()
+        Button quit = new ()
         {
-            Title = "_Click Me to Quit (or press Esc)",
-            X = Pos.Center(),
-            Y = Pos.Center()
+            Text = "_Quit",        // the leading _ defines the hotkey (Alt+Q)
+            X = Pos.Center (),
+            Y = Pos.Center ()
         };
 
-        button.Accepting += (_, _) => App!.RequestStop();
+        // v2 has NO `Clicked` event. A view raises `Accepting` when the user activates it
+        // (Enter / click / hotkey); set e.Handled = true to cancel. `Accepted` is the
+        // post-activation variant — see AGENTS.md (#Events) for which to use when.
+        // `App!` is the running IApplication, reachable from any view in the tree.
+        quit.Accepting += (_, _) => App!.RequestStop ();
 
-        Add(label, button);
+        Add (welcome, quit);
+
+        // 👉 Add your views here. See AGENTS.md for canonical patterns + common pitfalls.
     }
 }
