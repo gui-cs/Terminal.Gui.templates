@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "gui-cs",
+  "classifications": [ "Console", "TUI", "Terminal.Gui" ],
+  "name": "Terminal.Gui App",
+  "description": "A complete, AI-agent-ready Terminal.Gui v2 app (net10.0): menu bar, status bar, and interactive content, with embedded AGENTS.md guidance.",
+  "identity": "Terminal.Gui.Templates.App",
+  "groupIdentity": "Terminal.Gui.Templates.App",
+  "shortName": "tui",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "tui-app",
+  "preferNameDirectory": true
+}

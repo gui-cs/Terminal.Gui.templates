@@ -39,8 +39,11 @@ jobs:
         run: |
           v='${{ steps.get_version.outputs.latest_version }}'
           sed -i "s|\(<PackageVersion>\)[^<]*\(</PackageVersion>\)|\1$v\2|" Terminal.Gui.templates.csproj
-          sed -i "s|\(<PackageReference Include=\"Terminal.Gui\" Version=\"\)[^\"]*\(\".*\)|\1$v\2|" templates/tui-simple/tui-simple.csproj
-          sed -i "s|\(<PackageReference Include=\"Terminal.Gui\" Version=\"\)[^\"]*\(\".*\)|\1$v\2|" templates/tui-designer/tui-designer.csproj
+          # Bump the Terminal.Gui reference in EVERY template csproj (so new templates are
+          # covered automatically — no per-template edits needed here).
+          for proj in templates/*/*.csproj; do
+            sed -i "s|\(<PackageReference Include=\"Terminal.Gui\" Version=\"\)[^\"]*\(\".*\)|\1$v\2|" "$proj"
+          done
 
       - name: Build and Package Template
         if: matrix.job == 'package-template'
@@ -59,7 +62,7 @@ jobs:
           set -euo pipefail
           # tui-designer is intentionally not tested/packaged yet (designer snapshot needs
           # regeneration against current Terminal.Gui). Test the packaged template(s).
-          for t in tui-simple; do
+          for t in tui-simple tui; do
             echo "::group::$t"
             rm -rf "/tmp/$t-test"
             dotnet new install "./templates/$t"
