@@ -56,6 +56,34 @@ jobs:
         if: matrix.job == 'package-template' && contains(github.ref, 'refs/tags/v')
         run: dotnet nuget push ./bin/Release/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
+      - name: Verify the PUBLISHED package installs from NuGet and works
+        if: matrix.job == 'package-template' && contains(github.ref, 'refs/tags/v')
+        shell: bash
+        run: |
+          set -euo pipefail
+          v='${{ steps.get_version.outputs.latest_version }}'
+          idx="https://api.nuget.org/v3-flatcontainer/terminal.gui.templates/index.json"
+          echo "Waiting for Terminal.Gui.Templates $v to index on NuGet…"
+          for i in $(seq 1 60); do  # up to ~20 min
+            if curl -s "$idx" | jq -e --arg v "$v" '(.versions // []) | index($v)' >/dev/null 2>&1; then
+              indexed=1; echo "Indexed after ~$((i * 20))s."; break
+            fi
+            sleep 20
+          done
+          if [ "${indexed:-}" != 1 ]; then
+            # Publish already succeeded; NuGet's indexer being slow isn't our bug — warn, don't fail.
+            echo "::warning::$v did not index within the timeout; skipping post-publish smoke test."
+            exit 0
+          fi
+          # Install the JUST-PUBLISHED package from nuget.org and prove it generates + builds —
+          # catches "published but broken/unusable for end users" before anyone files a bug.
+          dotnet new install "Terminal.Gui.Templates::$v"
+          rm -rf /tmp/pub-verify
+          dotnet new tui -n PubVerify -o /tmp/pub-verify
+          test -f /tmp/pub-verify/AGENTS.md || { echo "::error::published package did not emit AGENTS.md"; exit 1; }
+          dotnet build /tmp/pub-verify
+          echo "✅ Published Terminal.Gui.Templates $v installs from NuGet and builds."
+
       - name: Test the template installs, generates, and builds
         if: matrix.job == 'test-template'
         run: |
