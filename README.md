@@ -2,7 +2,7 @@
 
 # Terminal.Gui Templates
 
-`dotnet new` templates for building [Terminal.Gui](https://github.com/gui-cs/Terminal.Gui) **v2** apps — designed so an **AI coding agent** can scaffold and extend a TUI app correctly. Every generated project ships an **`AGENTS.md`** with the canonical v2 patterns (Terminal.Gui v2 is a complete rewrite, so most online/training-data examples are v1 and won't compile).
+`dotnet new` templates for building [Terminal.Gui](https://github.com/tui-cs/Terminal.Gui) **v2** apps — designed so an **AI coding agent** can scaffold and extend a TUI app correctly. Every generated project ships an **`AGENTS.md`** with the canonical v2 patterns (Terminal.Gui v2 is a complete rewrite, so most online/training-data examples are v1 and won't compile).
 
 ## Install
 
@@ -38,9 +38,9 @@ cd MyApp
 dotnet run            # Esc or the Quit button exits
 ```
 
-> **Note:** the previous `tui-designer` template is temporarily not shipped while it's regenerated against current Terminal.Gui — see [#24](https://github.com/gui-cs/Terminal.Gui.templates/issues/24).
+> **Note:** the previous `tui-designer` template is temporarily not shipped while it's regenerated against current Terminal.Gui — see [#24](https://github.com/tui-cs/Terminal.Gui.templates/issues/24).
 
 ## Links
-- Terminal.Gui: https://github.com/gui-cs/Terminal.Gui
-- Getting started: https://gui-cs.github.io/Terminal.Gui/
-- Relaunch plan: [#22](https://github.com/gui-cs/Terminal.Gui.templates/issues/22)
+- Terminal.Gui: https://github.com/tui-cs/Terminal.Gui
+- Getting started: https://tui-cs.github.io/Terminal.Gui/
+- Relaunch plan: [#22](https://github.com/tui-cs/Terminal.Gui.templates/issues/22)

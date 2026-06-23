@@ -18,7 +18,7 @@ Add this step at the end of the `publish` job in `.github/workflows/publish.yml`
       -H "Accept: application/vnd.github+json" \
       -H "Authorization: Bearer ${{ secrets.TEMPLATE_REPO_TOKEN }}" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
-      https://api.github.com/repos/gui-cs/Terminal.Gui.templates/dispatches \
+      https://api.github.com/repos/tui-cs/Terminal.Gui.templates/dispatches \
       -d '{"event_type":"terminal-gui-v2-released","client_payload":{"version":"${{ steps.gitversion.outputs.SemVer }}"}}'
 ```
 
@@ -32,7 +32,7 @@ Alternatively, use the official action:
   uses: peter-evans/repository-dispatch@v3
   with:
     token: ${{ secrets.TEMPLATE_REPO_TOKEN }}
-    repository: gui-cs/Terminal.Gui.templates
+    repository: tui-cs/Terminal.Gui.templates
     event-type: terminal-gui-v2-released
     client-payload: '{"version": "${{ steps.gitversion.outputs.SemVer }}"}'
 ```
@@ -40,7 +40,7 @@ Alternatively, use the official action:
 ## Required Secret
 
 Create a Personal Access Token (PAT) or use a GitHub App token with the following permissions:
-- Repository: `gui-cs/Terminal.Gui.templates`
+- Repository: `tui-cs/Terminal.Gui.templates`
 - Permission: `contents: write` or `repository_dispatch`
 
 Add this token as a secret named `TEMPLATE_REPO_TOKEN` in the Terminal.Gui repository settings.

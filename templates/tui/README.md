@@ -1,6 +1,6 @@
 # My Terminal.Gui App
 
-A complete Terminal User Interface (TUI) app built with [Terminal.Gui](https://github.com/gui-cs/Terminal.Gui) **v2** — a menu bar, a status bar, and interactive content.
+A complete Terminal User Interface (TUI) app built with [Terminal.Gui](https://github.com/tui-cs/Terminal.Gui) **v2** — a menu bar, a status bar, and interactive content.
 
 ```bash
 dotnet run        # launch (menu File>Quit or the status bar exits)
@@ -21,5 +21,5 @@ are **v1 and won't compile**. **Read [`AGENTS.md`](./AGENTS.md) first** for the 
 patterns, the v1→v2 corrections table, `Pos`/`Dim` layout, and common pitfalls.
 
 ## Learn more
-- Getting started: https://gui-cs.github.io/Terminal.Gui/
-- Repository & samples: https://github.com/gui-cs/Terminal.Gui
+- Getting started: https://tui-cs.github.io/Terminal.Gui/
+- Repository & samples: https://github.com/tui-cs/Terminal.Gui

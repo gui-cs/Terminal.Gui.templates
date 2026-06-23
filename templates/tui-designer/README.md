@@ -1,6 +1,6 @@
 # Terminal.Gui Designer Template
 
-A starter template for building Terminal User Interface (TUI) applications with [Terminal.Gui](https://github.com/gui-cs/Terminal.Gui) v2, designed to work with the [Terminal.Gui Designer](https://github.com/gui-cs/TerminalGuiDesigner).
+A starter template for building Terminal User Interface (TUI) applications with [Terminal.Gui](https://github.com/tui-cs/Terminal.Gui) v2, designed to work with the [Terminal.Gui Designer](https://github.com/tui-cs/TerminalGuiDesigner).
 
 ## Usage
 
@@ -26,7 +26,7 @@ dotnet run
 
 ## Terminal.Gui Designer
 
-This template is optimized for use with [Terminal.Gui Designer](https://github.com/gui-cs/TerminalGuiDesigner), a visual designer for creating Terminal.Gui interfaces.
+This template is optimized for use with [Terminal.Gui Designer](https://github.com/tui-cs/TerminalGuiDesigner), a visual designer for creating Terminal.Gui interfaces.
 
 Install the designer:
 
@@ -36,6 +36,6 @@ dotnet tool install --global TerminalGuiDesigner
 
 ## Learn More
 
-- [Terminal.Gui Documentation](https://gui-cs.github.io/Terminal.GuiV2Docs/)
-- [Terminal.Gui GitHub](https://github.com/gui-cs/Terminal.Gui)
-- [Terminal.Gui Designer](https://github.com/gui-cs/TerminalGuiDesigner)
+- [Terminal.Gui Documentation](https://tui-cs.github.io/Terminal.GuiV2Docs/)
+- [Terminal.Gui GitHub](https://github.com/tui-cs/Terminal.Gui)
+- [Terminal.Gui Designer](https://github.com/tui-cs/TerminalGuiDesigner)

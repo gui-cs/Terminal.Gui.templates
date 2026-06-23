@@ -5,11 +5,11 @@
 		<PackageVersion>2.4.8</PackageVersion>
 		<PackageId>Terminal.Gui.Templates</PackageId>
 		<Title>Terminal.Gui templates</Title>
-		<Authors>gui-cs</Authors>
+		<Authors>tui-cs</Authors>
 		<Description>AI-agent-ready `dotnet new` templates for building Terminal.Gui v2 apps (net10.0). Generated projects ship embedded AGENTS.md guidance with the canonical v2 patterns.</Description>
 		<PackageTags>dotnet-new;templates;template;terminal;tui;gui;console;csharp;terminal.gui;ai-agents</PackageTags>
 		<TargetFramework>net10.0</TargetFramework>
-		<PackageProjectUrl>https://github.com/gui-cs/Terminal.Gui.templates</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/tui-cs/Terminal.Gui.templates</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeContentInPack>true</IncludeContentInPack>
