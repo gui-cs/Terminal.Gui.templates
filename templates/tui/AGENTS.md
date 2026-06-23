@@ -35,7 +35,7 @@ internal sealed class MainWindow : Window   // bordered root; use `Runnable` for
     {
         Title = "My App (Esc to quit)";
         Button b = new () { Text = "_OK", X = Pos.Center (), Y = Pos.Center () };
-        b.Accepting += (_, _) => App!.RequestStop ();
+        b.Accepted += (_, _) => App!.RequestStop ();
         Add (b);
     }
 }
@@ -51,7 +51,7 @@ internal sealed class MainWindow : Window   // bordered root; use `Runnable` for
 | `using Terminal.Gui;` | split namespaces: `Terminal.Gui.App` / `.Views` / `.ViewBase` / `.Drawing` / `.Input` / `.Configuration` |
 | `new Toplevel ()` | subclass `Runnable`, or use `Window` |
 | `new Button ("OK")` | `new Button { Text = "OK" }` (object initializers; no positional ctors) |
-| `button.Clicked += …` | `button.Accepting += (_, _) => …;` (no `Clicked` in v2) |
+| `button.Clicked += …` | `button.Accepted += (_, _) => …;` (no `Clicked` in v2) |
 | `view.Bounds` | `view.Viewport` |
 | `LayoutStyle.Computed` | removed — layout is always declarative via `Pos`/`Dim` |
 | `new RadioGroup (…)` | `new OptionSelector { … }` |
@@ -66,7 +66,7 @@ internal sealed class MainWindow : Window   // bordered root; use `Runnable` for
    (Enter-activated) — for both `Dialog` and `MessageBox`. Order them `Cancel … OK` so the
    affirmative action is last. Don't hand-set `IsDefault` unless you mean to override this.
 2. **`Accepted` vs `Accepting`.** `Accepting` is the pre-event (set `e.Handled = true` to
-   cancel); `Accepted` is the post-event for side effects. Use the one that matches intent.
+   cancel); `Accepted` is the post-event for side effects. Default to `Accepted`; reach for `Accepting` only to cancel.
 3. **Typed views expose `.Value`, not guessed names.** They implement `IValue<T>` —
    `datePicker.Value` (a `DateTime`), not `.Date`; subscribe `ValueChanged`/`ValueChanging`.
 4. **`AddCommand` is `protected`.** Register commands **inside** your `View` subclass, then

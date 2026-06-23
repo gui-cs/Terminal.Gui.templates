@@ -74,9 +74,10 @@ public sealed class MainWindow : Runnable
             Y = Pos.Center () + 1
         };
 
-        // No `Clicked` in v2 — a view raises `Accepting` when activated (Enter/click/hotkey).
+        // No `Clicked` in v2 — use `Accepted` for side effects (it fires when the view is
+        // activated: Enter/click/hotkey). Use `Accepting` only to inspect/cancel (e.Handled = true).
         // `App!` is the running IApplication, reachable from any view in the tree.
-        increment.Accepting += (_, _) =>
+        increment.Accepted += (_, _) =>
         {
             _count++;
             _countLabel.Text = $"Count: {_count}";   // update state -> UI

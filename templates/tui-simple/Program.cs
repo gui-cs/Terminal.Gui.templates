@@ -49,11 +49,11 @@ internal sealed class MainWindow : Window
             Y = Pos.Center ()
         };
 
-        // v2 has NO `Clicked` event. A view raises `Accepting` when the user activates it
-        // (Enter / click / hotkey); set e.Handled = true to cancel. `Accepted` is the
-        // post-activation variant — see AGENTS.md (#Events) for which to use when.
+        // v2 has NO `Clicked` event. Use `Accepted` for side effects like this — it fires when
+        // the user activates the view (Enter / click / hotkey). Use `Accepting` only to inspect
+        // or cancel the activation (set e.Handled = true). See AGENTS.md (#Events).
         // `App!` is the running IApplication, reachable from any view in the tree.
-        quit.Accepting += (_, _) => App!.RequestStop ();
+        quit.Accepted += (_, _) => App!.RequestStop ();
 
         Add (welcome, quit);
 
