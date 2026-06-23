@@ -14,17 +14,29 @@ This installs the latest templates targeting current stable Terminal.Gui (net10.
 
 ## Create a project
 
-### `tui-simple`
+Every template emits an `AGENTS.md` + `CLAUDE.md` — open `MyApp/AGENTS.md` first. It has the
+canonical minimal app, the v1→v2 corrections table, `Pos`/`Dim` layout, common gotchas, and
+links to Terminal.Gui's CI-validated docs.
 
-A minimal, agent-ready Terminal.Gui v2 app: a `Window` with a label and a quit button, an embedded `AGENTS.md`/`CLAUDE.md`, and a fully commented `Program.cs`.
+### `tui` — a complete starter (recommended)
+
+A real app to extend: a menu bar, a status bar, and interactive content, wired up with the canonical v2 patterns.
+
+```bash
+dotnet new tui -n MyApp
+cd MyApp
+dotnet run            # File > Quit (or the status bar) exits
+```
+
+### `tui-simple` — the minimal app
+
+The smallest runnable v2 app: a `Window` with a label and a quit button, and a fully commented `Program.cs`.
 
 ```bash
 dotnet new tui-simple -n MyApp
 cd MyApp
 dotnet run            # Esc or the Quit button exits
 ```
-
-Open `MyApp/AGENTS.md` first — it has the canonical minimal app, the v1→v2 corrections table, `Pos`/`Dim` layout, common gotchas, and links to Terminal.Gui's CI-validated docs.
 
 > **Note:** the previous `tui-designer` template is temporarily not shipped while it's regenerated against current Terminal.Gui — see [#24](https://github.com/gui-cs/Terminal.Gui.templates/issues/24).
 
