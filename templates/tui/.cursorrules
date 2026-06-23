@@ -11,7 +11,7 @@ Non-negotiables (see AGENTS.md for the rest):
 - Root views are **`Runnable`** or **`Window`**, never `Toplevel`.
 - Namespaces are split: `using Terminal.Gui.App;` / `.Views;` / `.ViewBase;` / `.Input;` … —
   the bare `using Terminal.Gui;` is gone.
-- **No `Clicked` event** — use `Accepting` (pre/cancelable) or `Accepted` (post). Use object
+- **No `Clicked` event** — use `Accepted` for side effects; `Accepting` only to cancel (`e.Handled = true`). Use object
   initializers (`new Button { Text = "OK" }`), not positional constructors.
 - **Layout is declarative** — `Pos.Center ()`, `Dim.Fill ()`; don't hardcode coordinates.
 - Dialogs: the **last button added is the default**; type-specific views expose `.Value`
