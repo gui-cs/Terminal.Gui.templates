@@ -16,6 +16,9 @@
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 		<ContentTargetFolders>content</ContentTargetFolders>
+		<!-- Template output includes dotfiles (.editorconfig, .template.config); without this,
+		     NuGet silently drops files starting with '.' from the package (NU5119). -->
+		<NoDefaultExcludes>true</NoDefaultExcludes>
 		<PackageReleaseNotes>
 			2.4.x
 			- Relaunch as the AI-agent-first on-ramp to Terminal.Gui v2.
