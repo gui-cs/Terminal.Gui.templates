@@ -63,9 +63,9 @@ jobs:
         run: |
           v='${{ steps.get_version.outputs.latest_version }}'
           sed -i "s|\(<PackageVersion>\)[^<]*\(</PackageVersion>\)|\1$v\2|" Terminal.Gui.templates.csproj
-          # Bump the Terminal.Gui reference in EVERY template csproj (so new templates are
-          # covered automatically — no per-template edits needed here).
-          for proj in templates/*/*.csproj; do
+          # Bump the Terminal.Gui reference in EVERY template csproj, recursively (covers new
+          # templates and nested test projects automatically — no per-template edits needed).
+          find templates -name '*.csproj' -print0 | while IFS= read -r -d '' proj; do
             sed -i "s|\(<PackageReference Include=\"Terminal.Gui\" Version=\"\)[^\"]*\(\".*\)|\1$v\2|" "$proj"
           done
 

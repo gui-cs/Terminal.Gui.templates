@@ -3,7 +3,7 @@
   "author": "gui-cs",
   "classifications": [ "Console", "TUI", "Terminal.Gui" ],
   "name": "Terminal.Gui App",
-  "description": "A complete, AI-agent-ready Terminal.Gui v2 app (net10.0): menu bar, status bar, and interactive content, with embedded AGENTS.md guidance.",
+  "description": "A complete, AI-agent-ready Terminal.Gui v2 app (net10.0): menu bar, status bar, and interactive content, with embedded AGENTS.md guidance. Optionally scaffolds a headless xUnit test project.",
   "identity": "Terminal.Gui.Templates.App",
   "groupIdentity": "Terminal.Gui.Templates.App",
   "shortName": "tui",
@@ -12,5 +12,23 @@
     "type": "project"
   },
   "sourceName": "tui-app",
-  "preferNameDirectory": true
+  "preferNameDirectory": true,
+  "symbols": {
+    "WithTests": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Also scaffold an xUnit test project with headless example tests (a red-green loop for agents)."
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!WithTests)",
+          "exclude": [ "Tests/**" ]
+        }
+      ]
+    }
+  ]
 }

@@ -12,4 +12,11 @@
     <PackageReference Include="Terminal.Gui" Version="2.4.8" />
   </ItemGroup>
 
+  <!-- The optional test project (the WithTests option) lives under Tests/ in this folder;
+       keep its sources out of the app's own compilation. Harmless when Tests/ isn't generated. -->
+  <ItemGroup>
+    <Compile Remove="Tests\**" />
+    <None Remove="Tests\**" />
+  </ItemGroup>
+
 </Project>
