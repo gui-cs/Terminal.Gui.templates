@@ -1,30 +1,27 @@
-# Terminal.Gui Simple Template
+# My Terminal.Gui App
 
-A minimal starter template for building Terminal User Interface (TUI) applications with [Terminal.Gui](https://github.com/gui-cs/Terminal.Gui) v2.
-
-## Usage
-
-Install the template:
+A minimal Terminal User Interface (TUI) app built with [Terminal.Gui](https://github.com/gui-cs/Terminal.Gui) **v2**.
 
 ```bash
-dotnet new install Terminal.gui.templates@2.0.0-alpha.*
+dotnet run        # launch (Esc or the Quit button exits)
+dotnet build      # compile only
 ```
 
-Create a new project:
+## Project layout
+| File | Purpose |
+|---|---|
+| `Program.cs` | App entry point + the root `MainWindow` view. Add your views here. |
+| `AGENTS.md` | **Canonical Terminal.Gui v2 patterns + gotchas for AI agents and humans.** Start here. |
+| `CLAUDE.md` | Thin pointer to `AGENTS.md` for Claude / Claude Code. |
+| `*.csproj` | Targets `net10.0`, references `Terminal.Gui`. |
 
-```bash
-dotnet new tui-simple -n MyApp
-cd MyApp
-dotnet run
-```
+## Building with an AI agent?
+Terminal.Gui v2 is a complete rewrite — most examples online (and in model training data)
+are **v1 and won't compile**. **Read [`AGENTS.md`](./AGENTS.md) first**: it has the canonical
+minimal app, the v1→v2 corrections table, `Pos`/`Dim` layout, the common pitfalls, and links
+to Terminal.Gui's CI-validated docs.
 
-## What's Included
-
-- A simple `Window` with a welcome label and a quit button
-- Pre-configured Terminal.Gui v2 package reference
-- Modern C# with nullable reference types and implicit usings
-
-## Learn More
-
-- [Terminal.Gui Documentation](https://gui-cs.github.io/Terminal.GuiV2Docs/)
-- [Terminal.Gui GitHub](https://github.com/gui-cs/Terminal.Gui)
+## Learn more
+- Getting started: https://gui-cs.github.io/Terminal.Gui/
+- Repository & samples: https://github.com/gui-cs/Terminal.Gui
+- v1→v2 primer: https://github.com/gui-cs/Terminal.Gui/blob/develop/ai-v2-primer.md

@@ -1,7 +1,9 @@
 {
-  "author": "Tig",
-  "classifications": [ "Console", "TUI" ],
-  "name": "Terminal Gui Simple Template",
+  "$schema": "http://json.schemastore.org/template",
+  "author": "gui-cs",
+  "classifications": [ "Console", "TUI", "Terminal.Gui" ],
+  "name": "Terminal.Gui Simple App",
+  "description": "A minimal, AI-agent-ready Terminal.Gui v2 app (net10.0) with embedded AGENTS.md guidance.",
   "identity": "Terminal.Gui.Templates.Simple",
   "groupIdentity": "Terminal.Gui.Templates.Simple",
   "shortName": "tui-simple",
@@ -9,6 +11,6 @@
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "Simple",
+  "sourceName": "tui-simple",
   "preferNameDirectory": true
 }

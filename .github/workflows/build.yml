@@ -11,50 +11,61 @@ jobs:
         job: [package-template, test-template]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.x'
 
-      - name: Get latest Terminal.Gui pre-release version
+      - name: Get latest stable Terminal.Gui version
         id: get_version
         run: |
+          # Pick the latest STABLE Terminal.Gui from NuGet.
+          # NOTE: the old selector matched only -alpha/-beta and sorted by the LAST dotted
+          # field, so it re-picked 2.0.0-alpha.4309 (build 4309) forever and froze this repo.
+          # Filter out every pre-release (anything with a '-') and sort with real semver order.
           url="https://api.nuget.org/v3-flatcontainer/terminal.gui/index.json"
-          # Support both alpha and beta releases
-          latest_version=$(curl -s $url | jq -r '.versions[]' | grep -E -- '-(alpha|beta)\.' | awk -F'.' '{print $NF, $0}' | sort -n | tail -n 1 | cut -d' ' -f2-)
-          echo "latest_prerelease=$latest_version" >> $GITHUB_OUTPUT
+          # select(...) keeps only stable versions (no '-' pre-release suffix); sort -V = semver order.
+          latest_version=$(curl -s "$url" | jq -r '.versions[] | select(contains("-") | not)' | sort -V | tail -n 1)
+          if [ -z "$latest_version" ]; then
+            echo "::error::Could not resolve a stable Terminal.Gui version from NuGet."
+            exit 1
+          fi
+          echo "Latest stable Terminal.Gui: $latest_version"
+          echo "latest_version=$latest_version" >> "$GITHUB_OUTPUT"
 
-      - name: Update Terminal.Gui dependency in template
+      - name: Update Terminal.Gui dependency in templates
         run: |
-          sed -i 's/\(<PackageVersion>\)[^<]*\(<\/PackageVersion>\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' Terminal.Gui.templates.csproj
-          sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-simple/tui-simple.csproj
-          sed -i 's/\(<PackageReference Include="Terminal.Gui" Version="\)[^"]*\(".*\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' templates/tui-designer/tui-designer.csproj
-          sed -i 's/\(<PackageVersion>\)[^<]*\(<\/PackageVersion>\)/\1${{ steps.get_version.outputs.latest_prerelease }}\2/' Terminal.Gui.templates.csproj
+          v='${{ steps.get_version.outputs.latest_version }}'
+          sed -i "s|\(<PackageVersion>\)[^<]*\(</PackageVersion>\)|\1$v\2|" Terminal.Gui.templates.csproj
+          sed -i "s|\(<PackageReference Include=\"Terminal.Gui\" Version=\"\)[^\"]*\(\".*\)|\1$v\2|" templates/tui-simple/tui-simple.csproj
+          sed -i "s|\(<PackageReference Include=\"Terminal.Gui\" Version=\"\)[^\"]*\(\".*\)|\1$v\2|" templates/tui-designer/tui-designer.csproj
 
       - name: Build and Package Template
         if: matrix.job == 'package-template'
         run: |
-          dotnet restore
-          dotnet list package
-          dotnet pack
+          # Pack only the template package project — NOT the solution (the generated app
+          # csprojs under templates/ are content, not buildable projects of this package).
+          dotnet pack Terminal.Gui.templates.csproj -c Release
 
       - name: Publish to NuGet
         if: matrix.job == 'package-template' && contains(github.ref, 'refs/tags/v')
         run: dotnet nuget push ./bin/Release/*.nupkg --api-key ${{ secrets.NUGET_KEY }} --source https://api.nuget.org/v3/index.json
 
-      - name: Test Template Install and Build
+      - name: Test the template installs, generates, and builds
         if: matrix.job == 'test-template'
         run: |
-          # Install the template locally
-          dotnet new install templates/tui-simple
-
-          # Create a new project from the template
-          mkdir testapp
-          cd testapp
-          dotnet new tui-simple -n myproj
-          cd myproj
-
-          # Build the generated project
-          dotnet build
+          set -euo pipefail
+          # tui-designer is intentionally not tested/packaged yet (designer snapshot needs
+          # regeneration against current Terminal.Gui). Test the packaged template(s).
+          for t in tui-simple; do
+            echo "::group::$t"
+            rm -rf "/tmp/$t-test"
+            dotnet new install "./templates/$t"
+            dotnet new "$t" -n SmokeApp -o "/tmp/$t-test"
+            # Verify the agent guidance is emitted (the whole point of these templates).
+            test -f "/tmp/$t-test/AGENTS.md" || { echo "::error::$t did not emit AGENTS.md"; exit 1; }
+            dotnet build "/tmp/$t-test"
+            echo "::endgroup::"
+          done

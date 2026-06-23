@@ -2,38 +2,35 @@
 
 	<PropertyGroup>
 		<PackageType>Template</PackageType>
-		<PackageVersion>2.0.0-alpha.4309</PackageVersion>
-		<PackageId>Terminal.gui.templates</PackageId>
+		<PackageVersion>2.4.8</PackageVersion>
+		<PackageId>Terminal.Gui.Templates</PackageId>
 		<Title>Terminal.Gui templates</Title>
-		<Authors>Thomas Nind</Authors>
-		<Description>Templates to use when creating an application for Terminal.Gui v2.</Description>
-		<PackageTags>dotnet-new;templates;csharp;terminal;c#;gui;template;consol</PackageTags>
+		<Authors>gui-cs</Authors>
+		<Description>AI-agent-ready `dotnet new` templates for building Terminal.Gui v2 apps (net10.0). Generated projects ship embedded AGENTS.md guidance with the canonical v2 patterns.</Description>
+		<PackageTags>dotnet-new;templates;template;terminal;tui;gui;console;csharp;terminal.gui;ai-agents</PackageTags>
 		<TargetFramework>net10.0</TargetFramework>
 		<PackageProjectUrl>https://github.com/gui-cs/Terminal.Gui.templates</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeContentInPack>true</IncludeContentInPack>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 		<ContentTargetFolders>content</ContentTargetFolders>
 		<PackageReleaseNotes>
-			2.0.0-v2-develop.4766
-			- Update for version 2 of Terminal.Gui
-			2.0.0-v2-develop.4519
-			- Update for version 2 of Terminal.Gui
-			2.0.0-v2-develop.2203
-			- Update for version 2 of Terminal.Gui (latest Terminal Gui Designer compatible edition)
-			v1.0.3
-			- Added Title to window showing quit shortcut
-			v1.0.2
-			- Renamed package Terminal.Gui.templates
-			v1.0.1
-			- Added README.md to package
-			- Changed Terminal.Gui package dependency to be 1.* instead of explicitly 1.7.2
+			2.4.x
+			- Relaunch as the AI-agent-first on-ramp to Terminal.Gui v2.
+			- Re-target current stable Terminal.Gui (was frozen on 2.0.0-alpha.4309 by a broken version selector).
+			- tui-simple: generated projects now ship AGENTS.md + CLAUDE.md with the canonical v2 patterns,
+			  v1-&gt;v2 corrections, Pos/Dim layout, and common-pitfall gotchas; Program.cs is fully commented.
+			- tui-designer is temporarily not packaged pending regeneration against current Terminal.Gui
+			  (its TerminalGuiDesigner snapshot no longer compiles). Tracked separately.
 		</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+		<!-- tui-designer is excluded until its designer-generated code is regenerated against current
+		     Terminal.Gui (the snapshot references the removed View.ShadowStyle API). See follow-up issue. -->
+		<Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**;templates\tui-designer\**" />
 		<Compile Remove="**\*" />
 		<None Remove="templates\**\bin\**" />
 		<None Remove="templates\**\obj\**" />
