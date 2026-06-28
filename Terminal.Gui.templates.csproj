@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<PackageType>Template</PackageType>
-		<PackageVersion>2.4.12</PackageVersion>
+		<PackageVersion>2.4.13</PackageVersion>
 		<PackageId>Terminal.Gui.Templates</PackageId>
 		<Title>Terminal.Gui templates</Title>
 		<Authors>tui-cs</Authors>

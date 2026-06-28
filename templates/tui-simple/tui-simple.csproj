@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Terminal.Gui" Version="2.4.12" />
+    <PackageReference Include="Terminal.Gui" Version="2.4.13" />
   </ItemGroup>
 
 </Project>
