@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Terminal.Gui" Version="2.4.11" />
+    <PackageReference Include="Terminal.Gui" Version="2.4.12" />
   </ItemGroup>
 
   <!-- The optional test project (the WithTests option) lives under Tests/ in this folder;
